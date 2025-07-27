@@ -7,6 +7,12 @@ const GAS_URL = "https://script.google.com/macros/s/AKfycbxKCZSw_HwrD5XTIRi_SG9M
 
 app.use(express.json());
 
+// Dán đoạn này vào đây (trước `app.listen`)
+app.get("/", (req, res) => {
+    console.log("✅ Ping đến từ Uptime lúc:", new Date().toISOString());
+    res.send("Server OK");
+});
+
 app.post("/dopost", async (req, res) => {
     try {
         const response = await axios.post(GAS_URL, req.body, {
